@@ -1,3 +1,5 @@
+//exercicio 02
+
 "use strict";
 
 /** @type {import('sequelize-cli').Migration} */
