@@ -2,66 +2,69 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("trainne", {
+    await queryInterface.createTable("companies", {
       id: {
-        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        type: Sequelize.INTEGER,
       },
-      name: {
+      cnpj: {
         type: Sequelize.STRING,
-        allowNull: false
       },
-      email: {
+      company_name: {
         type: Sequelize.STRING,
-        allowNull: false
       },
-      rg: {
+      contact: {
         type: Sequelize.STRING,
+      },
+      cep: {
         allowNull: false,
-        unique: true
-      },
-      cpf: {
         type: Sequelize.STRING,
+      },
+      adress: {
         allowNull: false,
-        unique: true
-      },
-      primary_phone_contact: {
         type: Sequelize.STRING,
-        allowNull: false
       },
-      secondary_phone_contact: {
+      neighborhood: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: true
       },
-      date_birth: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      father_name: {
+      city: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false
       },
-      mother_name: {
+      state: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false
       },
-      have_special_needs: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
+      number: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      complement: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      rh_analyst_name: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      supervisor_name: {
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       created_at: {
+        allowNull: false,
         type: Sequelize.DATE,
-        allowNull: false
       },
-      updated_at: {
+      update_at: {
+        allowNull: false,
         type: Sequelize.DATE,
-        allowNull: false
       },
-    }),
+    });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("trainne");
+    await queryInterface.dropTable("companies");
   },
 };

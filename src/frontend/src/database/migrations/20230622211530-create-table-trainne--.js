@@ -1,66 +1,79 @@
-"use strict"; // Ex 7 - criar tabela Companies - Migrations
+"use strict"; // atividade 04
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("trainne", {
       id: {
-        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        type: Sequelize.INTEGER,
       },
+
       name: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false
       },
+
       email: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false
       },
+
       rg: {
-        type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        type: Sequelize.STRING,
       },
+
       cpf: {
-        type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        type: Sequelize.STRING,
       },
+
       primary_phone_contact: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false
       },
-      secondary_phone_contact: {
+
+      secundary_phone_contact: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: true
       },
+
       date_birth: {
+        allowNull: false,
         type: Sequelize.DATE,
-        allowNull: false
       },
+
       father_name: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false
       },
       mother_name: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false
       },
+
       have_special_needs: {
+        allowNull: false,
         type: Sequelize.BOOLEAN,
-        allowNull: false
       },
+
       created_at: {
+        allowNull: false,
         type: Sequelize.DATE,
-        allowNull: false
       },
+
       updated_at: {
+        allowNull: false,
         type: Sequelize.DATE,
-        allowNull: false
       },
-    }),
+    });
   },
+
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("trainne");
   },

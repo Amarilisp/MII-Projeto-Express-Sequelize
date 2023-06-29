@@ -1,25 +1,47 @@
-// continuação da atividade 04
 const { connection } = require("../database/connection");
-const { STRING, DATE, BOOLEAN } = require("sequilize");
-const Trainne = connection.define("trainne", {
-  name: STRING,
-  email: STRING,
-  rg: {
-    type: STRING,
-    unique: true,
-  },
-  cpf: {
-    type: STRING,
-    unique: true,
-  },
-  primary_phone_contact: STRING,
-  secundary_phone_contact: STRING,
-  date_birth: DATE,
-  father_name: STRING,
-  mother_nome: STRING,
-  have_special_needs: BOOLEAN,
-  created_at: DATE,
-  updated_at: DATE,
-});
+const { STRING, DATE, BOOLEAN } = require("sequelize");
 
-module.exports = { Trainne };
+const Trainee = connection.define(
+  "trainee",
+  {
+    name: STRING,
+    email: STRING,
+    rg: {
+      type: STRING,
+      validate: {
+        min: {
+          args: 2,
+          msg: "Este campo deve ter no mínimo 2 caracteres.",
+        },
+      },
+      unique: {
+        msg: "Este campo não pode ser preenchido.",
+      },
+    },
+    cpf: {
+      type: STRING,
+      validate: {
+        len: {
+          args: [11, 11],
+          msg: "Este campo deve ter no máximo 11 caracteres.",
+        },
+      },
+      unique: {
+        msg: "Este campo não pode ser preenchido.",
+      },
+    },
+    primaryPhoneContact: STRING,
+    secondaryPhoneContact: {
+      type: STRING,
+      allowNull: true,
+    },
+    dateBirth: DATE,
+    fatherName: STRING,
+    motherName: STRING,
+    haveSpecialNeeds: BOOLEAN,
+    createdAt: DATE,
+    updatedAt: DATE,
+  },
+  { underscored: true }
+);
+module.exports = { Trainee };

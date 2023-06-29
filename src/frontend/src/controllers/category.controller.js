@@ -3,6 +3,7 @@ const { Category } = require("../models/category");
 class CategoryController {
   async createOneCategory(request, response) {
     const { name } = request.body;
+
     const data = await Category.create({
       name,
     });
