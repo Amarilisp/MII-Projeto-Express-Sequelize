@@ -1,67 +1,69 @@
-"use strict"; // Ex 7 - criar tabela Companies - Migrations
+"use strict";
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("trainne", {
+    await queryInterface.createTable("trainees", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       rg: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
       },
       cpf: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
       },
       primary_phone_contact: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       secondary_phone_contact: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: true,
       },
       date_birth: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
       },
       father_name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       mother_name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       have_special_needs: {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
       },
       updated_at: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
       },
-    }),
+    });
   },
+
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("trainne");
+    await queryInterface.dropTable("trainees");
   },
 };
