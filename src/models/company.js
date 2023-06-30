@@ -1,7 +1,7 @@
 "use strict"; // exercício 07
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class companies extends Model {
+  class company extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -22,5 +22,5 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "companies",
     }
   );
-  return companies;
+  return company;
 };
