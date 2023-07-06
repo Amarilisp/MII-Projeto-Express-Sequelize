@@ -1,24 +1,33 @@
 const { Category } = require("../models/category");
+const { listCategoriesService } = require("../services/category.services");
 
 class CategoryController {
   async createOneCategory(request, response) {
-    const { name } = request.body;
+    try {
+      const { name } = request.body;
+      if (!name) {
+        return response
+          .status(400)
+          .send({ message: "O nome é um campo obrigatório" });
+      }
 
-    const data = await Category.create({
-      name,
-    });
+      const data = await Category.create({
+        name,
+      });
 
-    return response.status(201).send(data);
+      return response.status(201).send(data);
+    } catch (error) {
+      console.log(error.message);
+      return response
+        .status(400)
+        .send({ message: "A categoria não pôde ser criada!" });
+    }
   }
 
   async listCategories(request, response) {
     const { offset, limit } = request.params;
 
-    const data = await Category.findAll({
-      offset: offset * limit,
-      limit: limit,
-      order: [["id", "ASC"]],
-    });
+    const data = await listCategoriesService(offset, limit);
 
     const total = await Category.count();
 
@@ -27,9 +36,15 @@ class CategoryController {
 
   async listOneCategory(request, response) {
     const { id } = request.params;
-    const data = await Category.findByPk(id);
+    const { key } = request.headers;
 
-    return response.status(200).send(data);
+    if (key === "Safe Person") {
+      const data = await Category.findByPk(id);
+
+      return response.status(200).send(data);
+    } else {
+      return response.status(400).send("Acesso Negado");
+    }
   }
 
   async updateOneCategory(request, response) {

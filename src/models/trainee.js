@@ -4,7 +4,9 @@ const { connection } = require("../database/connection");
 const Trainee = connection.define(
   "trainee",
   {
-    name: STRING,
+    name: {
+      type: STRING,
+    },
     // email: {
     //   validate: {
     //     isEmail: {
@@ -22,7 +24,7 @@ const Trainee = connection.define(
         },
       },
       unique: {
-        msg: "Este campo já está na aplicação",
+        msg: "Este campo rg já está na aplicação",
       },
     },
     cpf: {
@@ -34,7 +36,7 @@ const Trainee = connection.define(
         },
       },
       unique: {
-        msg: "Este campo já está na aplicação",
+        msg: "Este campo cpf já está na aplicação",
       },
     },
     primaryPhoneContact: STRING,
@@ -52,6 +54,4 @@ const Trainee = connection.define(
   { underscored: true, paranoid: true }
 );
 
-module.exports = {
-  Trainee,
-};
+module.exports = { Trainee };

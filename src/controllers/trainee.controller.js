@@ -51,6 +51,27 @@ class TraineeController {
 
     return response.status(200).send(data);
   }
+
+  async updateOneTrainee(request, response) {
+    const { id } = request.params;
+    const {
+      email,
+      haveSpecialNeeds,
+      primaryPhoneContact,
+      secondaryPhoneContact,
+    } = request.body;
+    const dataForUpdate = Object.assign(
+      {},
+      email && { email },
+      primaryPhoneContact && { primaryPhoneContact },
+      secondaryPhoneContact && { secondaryPhoneContact },
+      typeof haveSpecialNeeds === "boolean" && { haveSpecialNeeds }
+    );
+
+    await Trainee.update(dataForUpdate, { where: { id } });
+
+    return response.status(204).send();
+  }
 }
 
 module.exports = new TraineeController();

@@ -1,4 +1,8 @@
-require("../controllers/category.controller");
+const {
+  createOneContract,
+  listContracts,
+  listOneContract,
+} = require("../controllers/contract.controller");
 const { Router } = require("express");
 
 class ContractRouter {
